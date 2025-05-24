@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
-// Employee.h
-#ifndef EMPLOYEE_H
-#define EMPLOYEE_H
+#include "Employee.h"
 using namespace std;
+int main 
 class Employee {
 protected:
     string name;
