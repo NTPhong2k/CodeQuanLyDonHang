@@ -2,7 +2,7 @@
 #include <string>
 #include "Employee.h"
 using namespace std;
-int main 
+int main () {
 class Employee {
 protected:
     string name;
