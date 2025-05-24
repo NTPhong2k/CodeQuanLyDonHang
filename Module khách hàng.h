@@ -71,28 +71,27 @@ int main() {
     }
 
     cout << "\n=== Danh sach khach hang ===\n";
-    for (const auto& kh : danhSach) {
-        kh.xuat();
-    }
-
+    for (size_t i = 0; i < danhSach.size(); ++i) {
+        danhSach[i].xuat();
+}
     // Tim kiem theo ma
     string maTim;
     cout << "\nNhap ma khach hang can tim: ";
     getline(cin, maTim);
 
     bool timThay = false;
-    for (auto& kh : danhSach) {
-        if (kh.layMaKH() == maTim) {
+   for (size_t i = 0; i < danhSach.size(); ++i) {
+       if (danhSach[i].layMaKH() == maTim) {
             cout << "\nKhach hang tim thay:\n";
-            kh.xuat();
+            danhSach[i].xuat();
 
             string diaChiMoi;
             cout << "\nNhap dia chi moi: ";
             getline(cin, diaChiMoi);
-            kh.capNhatDiaChi(diaChiMoi);
+          danhSach[i].capNhatDiaChi(diaChiMoi);
 
             cout << "Thong tin sau cap nhat:\n";
-            kh.xuat();
+             danhSach[i].xuat();
 
             timThay = true;
             break;
