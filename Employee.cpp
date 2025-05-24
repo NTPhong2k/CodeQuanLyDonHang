@@ -60,5 +60,6 @@ public:
         return *this;
     }
 };
+}
 
 #endif
