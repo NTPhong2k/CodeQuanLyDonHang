@@ -19,7 +19,6 @@ public:
     virtual double calcSalary() const = 0; // Ham ao thuan tuy cho da hinh
 
     virtual ~Employee() {}
-};
 
 class FullTimeEmployee : public Employee {
     double baseSalary;
