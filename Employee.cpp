@@ -16,7 +16,7 @@ public:
         cout << "Nhan vien: " << name << ", ID: " << id << ", Vi tri: " << position << endl;
     }
 
-    virtual double calcSalary() const = 0; // Ham ao thuan tuy cho da hinh
+    virtual double calcSalary() const = 0; 
 
     virtual ~Employee() {}
 
