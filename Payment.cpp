@@ -1,32 +1,43 @@
-#include <iostream>
 #include "Payment.h"
-using namespace std;
+#include <limits>
 
 int main() {
-    // Tạo hai đối tượng thanh toán
-    Payment p1(100.50, "Cash", "Pending");
-    Payment p2(200.75, "Card", "Completed");
+    double amount;
+    int choice;
+    std::string cardNumber;
 
-    // Hiển thị thông tin thanh toán
-    cout << "Payment 1:" << endl;
-    cout << p1 << endl;
+    std::cout << "===== QUAN LY THANH TOAN =====" << std::endl;
 
-    cout << "Payment 2:" << endl;
-    cout << p2 << endl;
+    // Nhập số tiền
+    std::cout << "Nhap so tien can thanh toan (VND): ";
+    while (!(std::cin >> amount) || amount < 0) {
+        std::cout << "So tien khong hop le. Vui long nhap lai: ";
+        std::cin.clear(); // clear error flag
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard invalid input
+    }
 
-    // Sử dụng các tính năng của module
-    p1.updateStatus("Completed");
-    p1.updateMethod("Online");
-    p1.addNote("Paid via bank transfer");
+    // Chọn phương thức
+    std::cout << "Chon phuong thuc thanh toan:\n1. Tien mat\n2. The tin dung\nLua chon: ";
+    while (!(std::cin >> choice) || (choice != 1 && choice != 2)) {
+        std::cout << "Lua chon khong hop le. Vui long nhap 1 hoac 2: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 
-    // Hiển thị lại thông tin sau khi cập nhật
-    cout << "\nUpdated Payment 1:" << endl;
-    cout << p1 << endl;
+    PaymentMethod* method = nullptr;
+    if (choice == 1) {
+        method = new Cash();
+    } else {
+        std::cout << "Nhap so the: ";
+        std::cin.ignore(); // xóa newline còn sót
+        std::getline(std::cin, cardNumber);
+        method = new CreditCard(cardNumber);
+    }
 
-    // Sử dụng toán tử + để cộng dồn số tiền
-    Payment p3 = p1 + p2;
-    cout << "\nCombined Payment (P1 + P2):" << endl;
-    cout << p3 << endl;
+    // Tạo và hiển thị đơn thanh toán
+    Payment payment(amount, method);
+    std::cout << "\n===== THONG TIN THANH TOAN =====\n";
+    payment.display();
 
     return 0;
 }
