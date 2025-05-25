@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "Module khach hang.h"
+#include "KhachHang.h"
 #include "OrderModule.h"
 #include "Employee.h"
 #include "sanpham.h"
