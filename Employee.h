@@ -1,37 +1,47 @@
-#include <iostream>
+// Employee.h
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
+
 #include <string>
-#include "Employee.h"
-using namespace std;
+#include <iostream>
+
 class Employee {
 protected:
-    string name;
+    std::string name;
     int id;
-    string position;
+    std::string position;
 
 public:
-    Employee(const string& name = "", int id = 0, const string& position = "")
+    Employee(std::string name, int id, std::string position)
         : name(name), id(id), position(position) {}
 
     virtual void displayInfo() const {
-        cout << "Nhan vien: " << name << ", ID: " << id << ", Vi tri: " << position << endl;
+        std::cout << "Ten: " << name << "\n";
+        std::cout << "MSNV: " << id << "\n";
+        std::cout << "Vi tri: " << position << "\n";
     }
 
-    virtual double calcSalary() const = 0; 
+    // ThĂªm hĂ m getId() á»Ÿ Ä‘Ă¢y
+    int getId() const {
+        return id;
+    }
 
-    virtual ~Employee() {}
+    virtual double calcSalary() const = 0; // Pure virtual function
+
+    virtual ~Employee() {} // Virtual destructor
 };
 
-
 class FullTimeEmployee : public Employee {
+private:
     double baseSalary;
 
 public:
-    FullTimeEmployee(const string& name = "", int id = 0, const string& position = "", double baseSalary = 0)
+    FullTimeEmployee(std::string name, int id, std::string position, double baseSalary)
         : Employee(name, id, position), baseSalary(baseSalary) {}
 
     void displayInfo() const override {
+        std::cout << "Loai: Nhan vien Full-time\n";
         Employee::displayInfo();
-        cout << "Loai: Toan thoi gian, Luong co ban: " << baseSalary << endl;
     }
 
     double calcSalary() const override {
@@ -40,25 +50,21 @@ public:
 };
 
 class PartTimeEmployee : public Employee {
+private:
     int hoursWorked;
     double hourlyRate;
 
 public:
-    PartTimeEmployee(const string& name = "", int id = 0, const string& position = "", int hoursWorked = 0, double hourlyRate = 0)
+    PartTimeEmployee(std::string name, int id, std::string position, int hoursWorked, double hourlyRate)
         : Employee(name, id, position), hoursWorked(hoursWorked), hourlyRate(hourlyRate) {}
 
     void displayInfo() const override {
+        std::cout << "Loai: Nhan vien Part-time\n";
         Employee::displayInfo();
-        cout << "Loai: Ban thoi gian, So gio lam: " << hoursWorked << ", Muc luong moi gio: " << hourlyRate << endl;
     }
 
     double calcSalary() const override {
         return hoursWorked * hourlyRate;
-    }
-
-    PartTimeEmployee& operator+=(int hours) {
-        hoursWorked += hours;
-        return *this;
     }
 };
 
