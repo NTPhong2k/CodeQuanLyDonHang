@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <algorithm>
 #include "KhachHang.h"
 #include "OrderModule.h"
 #include "Employee.h"
